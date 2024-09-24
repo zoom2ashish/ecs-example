@@ -1,0 +1,27 @@
+# define deployment yaml to deploy go-18n-app:latest from local docker registry imagePullPolicy: Never
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecs-example-app
+  namespace: ecs-example-app-ns
+  labels:
+    app: ecs-example-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ecs-example-app
+  template:
+    metadata:
+      labels:
+        app: ecs-example-app
+    spec:
+      containers:
+      - name: web-nginx
+        image: nginx:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+        envFrom:
+        - configMapRef:
+            name: ecs-example-app-config

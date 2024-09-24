@@ -1,0 +1,17 @@
+# define k8s service to export port 8080 for app go-18n-app
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecs-example-app
+  namespace: ecs-example-app-ns
+  labels:
+    app: ecs-example-app
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 30080
+    protocol: TCP
+    name: http
+  selector:
+    app: ecs-example-app
