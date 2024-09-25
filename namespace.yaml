@@ -1,7 +1,0 @@
-# Declare k8s yaml to create namespace go-i18n
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: ecs-example-app-ns
-  labels:
-    name: ecs-example-app-ns
